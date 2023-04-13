@@ -4,6 +4,9 @@ import "./App.css";
 function App() {
   const [value, setValue] = useState("");
   const [todos, setTodos] = useState([]);
+  const [showX, setShowX] = useState(false)
+
+
 
   return (
     <div>
@@ -24,12 +27,16 @@ function App() {
       />
       <ul>
         {todos.map((task, index) => (
-          <li key={index}>
+          <li 
+            onMouseEnter={() => setShowX(true)}
+            onMouseLeave={() => setShowX(false)}
+          key={index}>
             {task}
-            <i 
-            className="fa-solid fa-x"
-            onClick={()=> setTodos((todos.filter((task, currentIndex) => index != currentIndex)))
-            }></i>
+            {showX ? <i 
+              className="borrar fa-solid fa-x"
+              onClick={()=> setTodos((todos.filter((task, currentIndex) => index != currentIndex)))
+              }>
+              </i> : null}
           </li>
         ))}
       </ul>
@@ -40,4 +47,3 @@ function App() {
 
 export default App;
 
-// {(e)=> e.key ===  "Enter" ? setTodos(todos.concat(value)) && setValue("") :null
