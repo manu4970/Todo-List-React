@@ -19,9 +19,11 @@ ul li {
   border: 2px solid gray;
   padding: 8px;
   width: 400px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-li i {
+li .x {
   float: right;
   padding: 5px;
 }
@@ -31,10 +33,32 @@ input {
   height: 25px;
   margin: 0;
   padding: 8px;
-
-
+  border-radius: 5px;
+  border: 2px solid gray;
 }
 
-.borrar {
+.input:focus-visible {
+  border: 2px solid #1fb9ad;
+  outline: none;
+}
+
+.x {
+  opacity: 0;
+}
+
+.task:hover .x {
+  opacity: 1;
   cursor: pointer;
+  color: #1fb9ad;
+}
+
+.noTask {
+  text-align: center;
+  border: 2px solid ;
+  background-color: #1fb9ad;
+  border-radius: 5px;
+}
+
+.totalTasks {
+  color: #1fb9ad;
 }

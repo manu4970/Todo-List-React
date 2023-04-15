@@ -4,15 +4,12 @@ import "./App.css";
 function App() {
   const [value, setValue] = useState("");
   const [todos, setTodos] = useState([]);
-  const [showX, setShowX] = useState(false)
-
-
 
   return (
     <div>
       <h1>My todo list</h1>
       <input
-        type="text"
+        className="input"
         placeholder="What do you need to do?"
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -26,21 +23,22 @@ function App() {
         }}
       />
       <ul>
-        {todos.map((task, index) => (
-          <li 
-            onMouseEnter={() => setShowX(true)}
-            onMouseLeave={() => setShowX(false)}
-          key={index}>
-            {task}
-            {showX ? <i 
-              className="borrar fa-solid fa-x"
-              onClick={()=> setTodos((todos.filter((task, currentIndex) => index != currentIndex)))
-              }>
-              </i> : null}
-          </li>
-        ))}
+        {todos.length===0 ? <li className="noTask"><i class="fa-solid fa-arrow-up"></i> no tasks, add a task <i class="fa-solid fa-arrow-up"></i></li> : 
+          todos.map((task, index) => (
+            <li 
+            className="task"
+            key={index}>
+              {task}
+              <i 
+                className="x fa-solid fa-x"
+                onClick={()=> setTodos((todos.filter((task, currentIndex) => index != currentIndex)))
+                }>
+              </i>
+            </li>
+          ))
+        }
       </ul>
-      <h3>tasks: {todos.length}</h3>
+      <h3>tasks: <span className="totalTasks">{todos.length}</span></h3>
     </div>
   );
 }
